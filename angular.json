@@ -64,9 +64,10 @@
             }
           }
         },
-        "serve": {
+        "serve": {             
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "port":8080,
             "browserTarget": "ITinfraAdmin:build"
           },
           "configurations": {
