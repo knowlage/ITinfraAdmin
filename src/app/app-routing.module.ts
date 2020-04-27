@@ -8,6 +8,7 @@ import { LoginlayoutComponent } from './loginlayout/loginlayout.component';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {NewsComponent} from './pages/news/news.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NewsEditeComponent} from './pages/news-edite/news-edite.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     children: [
       {path:'', component:DashboardComponent},
-      {path:'news', component:NewsComponent}
+      {path:'news', component: NewsComponent},
+      {path:'news/edit', component: NewsEditeComponent}
     ]
   },
   {

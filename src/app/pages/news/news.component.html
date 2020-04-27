@@ -3,7 +3,7 @@
 
 <div class="my-2" data-toggle="tooltip" title="Create News">
     <a>
-        <i class="fas fa-plus-circle fa-3x "></i>
+        <i class="fas fa-plus-circle fa-3x " (click)="onCreate()"></i>
     </a>    
 </div>
 
@@ -22,7 +22,7 @@
     <tbody>        
         <tr *ngFor="let newsList of newsLists | paginate:{itemsPerPage: 10, currentPage: page}">
             <td>{{newsList.id}}</td>
-            <td>{{newsList.news_title}}</td>
+            <td><a data-toggle="modal" data-target="#viewNews" class="text-info" (click)="onView(newsList)">{{newsList.news_title}}</a></td>
             <td>{{newsList.createAt | date}}</td>
             <td>{{newsList.updateAt | date}}</td>
             <td class="text-center">
@@ -46,10 +46,11 @@
                     </a>                   
                 </ng-template>
             </td>
-            <td class="text-center">               
+            <td class="text-center">                             
                 <a>
-                    <i class="fas fa-pen mx-2"><small> Edit</small></i>
+                    <i class="fas fa-pen mx-2" (click)="onEdite(newsList)"><small> Edit</small></i>
                 </a>
+                |
                 <a>
                     <i class="fas fa-trash text-danger mx-2"  data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(newsList.id)"><small> Delete</small></i>
                 </a>
@@ -77,6 +78,27 @@
             <div class="modal-footer">
                 <button type="button" class="btn" data-dismiss="modal">Cancle</button>
                 <button type="button" class="btn btn-danger" (click)="onDelete(id)" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal view news -->
+<div class="modal" id="viewNews" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h2><b>{{viewsNews.news_title}}</b></h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">update: {{viewsNews.updateAt | date}}</p>
+                <div [innerHTML]="viewsNews.news_text"></div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

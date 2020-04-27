@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -14,16 +15,16 @@ export class NewsComponent implements OnInit {
 
   id = ''
   page:number = 1
+  viewsNews:any = ''
 
-  constructor(private newsService:NewsService) { }  
+  constructor(private newsService:NewsService, private router:Router) { }  
 
   ngOnInit() {
     this.getNews()
   }
 
   getNews(){
-    this.newsService.getNews().subscribe(rs => {
-      // console.log(rs['data'])
+    this.newsService.getNews().subscribe(rs => {      
       this.newsLists = rs['data']
     })
   }
@@ -70,6 +71,21 @@ export class NewsComponent implements OnInit {
 
   onDeleteConfirm(id){
     this.id = id
+  }
+
+  onEdite(news){    
+    localStorage.setItem('newsEdit',JSON.stringify(news))
+    this.router.navigate(['/dashboard/news/edit'])
+  }
+
+  onCreate(){
+    localStorage.removeItem('newsEdit')
+    this.router.navigate(['/dashboard/news/edit'])
+  }
+  
+  onView(news){
+    this.viewsNews = news
+    console.log(news)    
   }
 
 }
