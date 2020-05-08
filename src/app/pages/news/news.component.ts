@@ -1,6 +1,8 @@
+// import { NewsSearchPipe } from './newsSearchPipe';
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { Router } from '@angular/router';
+import exportFromJSON from 'export-from-json'
 
 @Component({
   selector: 'app-news',
@@ -9,10 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NewsComponent implements OnInit {
 
-  newsLists = [
-
-  ]
-
+  newsLists = []
   id = ''
   page:number = 1
   viewsNews:any = ''
@@ -86,6 +85,19 @@ export class NewsComponent implements OnInit {
   onView(news){
     this.viewsNews = news
     console.log(news)    
+  }
+
+  onFileExport(title){    
+    if(title == undefined){
+      title = ' '
+    }   
+    this.newsService.getNewsFileExport(title).subscribe(rs => {
+      if(rs['code'] == 1){        
+        let data = rs['data']
+        exportFromJSON({data:data, fileName:'news', exportType:'csv'})
+      }      
+    })
+    
   }
 
 }

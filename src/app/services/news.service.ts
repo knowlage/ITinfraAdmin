@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,8 +39,11 @@ export class NewsService {
       return this.http.post('http://localhost:8000/news/postInsert',news,{headers})
     }else{
       return this.http.put('http://localhost:8000/news/putInsert', news,{headers})
-    }    
-      
-    
+    }       
   }
+
+  getNewsFileExport(title){    
+    return this.http.get('http://localhost:8000/news/getNewsFileExport/'+title)
+  }
+
 }

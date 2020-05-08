@@ -1,0 +1,118 @@
+<h2>FAQS</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <div class="my-2">
+            <button type="button" class="btn btn-info" (click)="onCreate()">
+                <i class="fas fa-plus"></i>
+                Create
+            </button>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="row my-3">
+    <div class="col">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="question" placeholder="FAQs Question Search">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+       <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Update</th>
+                <th class="text-center">Active</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let faqs of faqsList | faqsSearch:question | paginate:{itemsPerPage: 10, currentPage: page, totalItems: total}">
+                <td>{{faqs.id}}</td>
+                <td><a data-toggle="modal" data-target="#viewFaqs" class="text-info" (click)="onView(faqs)">{{faqs.faqs_question}}</a></td>
+                <td>{{faqs.faqs_answer | slice:0:30}}</td>
+                <td>{{faqs.updateAt | date}}</td>
+                <td class="text-center">
+                    <a data-toggle="tooltip" title="Deactivate" >
+                        <i *ngIf="faqs.faqs_state ; else unCheck" class="fas fa-check text-success" (click)="onDeactivate(faqs.id)"></i>
+                    </a>                    
+                    <ng-template #unCheck>
+                        <a data-toggle="tooltip" title="Activate" (click)="onActivate(faqs.id)" >
+                            <i class="far fa-times-circle text-danger" ></i>
+                        </a>                   
+                    </ng-template>                
+                </td>
+                <td class="text-center">
+                    <a>
+                        <i class="fas fa-pen mx-2" (click)="onEdit(faqs)" ><small> Edit</small></i>
+                    </a>
+                    |
+                    <a>
+                        <i class="fas fa-trash text-danger mx-2"  data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(faqs.id)"><small> Delete</small></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+       </table>
+       <div class="d-flex justify-content-end">           
+        <pagination-controls (pageChange)="page = $event" autoHide="true" ></pagination-controls>
+    </div>
+    </div>
+</div>
+
+
+
+<!-- modal delete confirm -->
+<div class="modal" id="deleteConfirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Delete Confirmation.
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Delete News ID :{{id}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete(id)" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- modal view faqs -->
+<div class="modal" id="viewFaqs" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h2><b>{{viewFaqs.faqs_question}}</b></h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">update: {{viewFaqs.updateAt | date}}</p>
+                <div [innerHTML]="viewFaqs.faqs_answer"></div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

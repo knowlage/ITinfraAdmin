@@ -9,6 +9,9 @@ import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {NewsComponent} from './pages/news/news.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NewsEditeComponent} from './pages/news-edite/news-edite.component';
+import { DownloadComponent } from './pages/download/download.component';
+import { FaqsComponent } from './pages/faqs/faqs.component';
+import { FaqsEditeComponent } from './pages/faqs-edite/faqs-edite.component';
 
 
 const routes: Routes = [
@@ -20,7 +23,10 @@ const routes: Routes = [
     children: [
       {path:'', component:DashboardComponent},
       {path:'news', component: NewsComponent},
-      {path:'news/edit', component: NewsEditeComponent}
+      {path:'news/edit', component: NewsEditeComponent},
+      {path:'download', component: DownloadComponent},
+      {path:'faqs', component: FaqsComponent},
+      {path:'faqs/edit', component: FaqsEditeComponent}
     ]
   },
   {
