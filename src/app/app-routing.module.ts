@@ -14,7 +14,8 @@ import { FaqsComponent } from './pages/faqs/faqs.component';
 import { FaqsEditeComponent } from './pages/faqs-edite/faqs-edite.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { DownloadEditeComponent } from './pages/download-edite/download-edite.component';
-
+import { CarouselComponent } from './pages/carousel/carousel.component';
+import { CarouselEditeComponent} from './pages/carousel-edite/carousel-edite.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/dashboard', pathMatch:'full'},
@@ -30,7 +31,9 @@ const routes: Routes = [
       {path:'faqs', component: FaqsComponent},
       {path:'faqs/edit', component: FaqsEditeComponent},
       {path:'upload', component: UploadComponent},
-      {path:'download/edit', component: DownloadEditeComponent}
+      {path:'download/edit', component: DownloadEditeComponent},
+      {path:'carousel', component: CarouselComponent},
+      {path:'carousel/edit', component: CarouselEditeComponent}
     ]
   },
   {

@@ -23,6 +23,8 @@ import { FaqsSearchPipe } from './pages/faqs/faqsSearchPipe';
 import { UploadComponent } from './pages/upload/upload.component';
 import { DownloadEditeComponent } from './pages/download-edite/download-edite.component';
 import { downloadSearchPipe} from './pages/download/downloadSearchPip';
+import { CarouselComponent } from './pages/carousel/carousel.component';
+import { CarouselEditeComponent } from './pages/carousel-edite/carousel-edite.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { downloadSearchPipe} from './pages/download/downloadSearchPip';
     FaqsSearchPipe,
     UploadComponent,
     DownloadEditeComponent,
-    downloadSearchPipe
+    downloadSearchPipe,
+    CarouselComponent,
+    CarouselEditeComponent
   ],
   imports: [
     BrowserModule,

@@ -28,4 +28,16 @@ export class FileService {
     this.http.get('http://localhost:8000/download/'+filename)
   }
 
+  getCarouselFile(){
+    return this.http.get('http://localhost:8000/uploads/carouselFile')
+  }
+
+  postUploadCarousel(formData){
+    return this.http.post('http://localhost:8000/uploads/uploadCarouselFile', formData)
+  }
+
+  deleteCarouselFile(file){
+    return this.http.delete('http://localhost:8000/uploads/deleteCarouselFile/'+file)
+  }
+
 }

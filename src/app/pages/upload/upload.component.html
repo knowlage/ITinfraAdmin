@@ -1,55 +1,108 @@
 <h2>Upload File</h2>
 <hr>
 
-<div class="row">
-    <div class="col">
-        <form [formGroup]="fileUpload" (ngSubmit)="onSubmit()">
-            <input type="file" formControlName="file" (change)="onFileChange($event)">
-            <button type="submit" class="btn btn-success" [disabled]="!fileUpload.valid">Upload</button>
-        </form>        
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="uploads-tab" data-toggle="tab" href="#uploads" role="tab" aria-controls="uploads" aria-selected="true">Uploads</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="carousel-tab" data-toggle="tab" href="#carousel" role="tab" aria-controls="carousel" aria-selected="false">Carousel</a>
+    </li>
+</ul>
+
+<!-- tab content -->
+<div class="tab-content">
+    <!-- upload tab -->
+    <div class="tab-pane fade show active" id="uploads" role="tabpanel" aria-labelledby="uploads-tab">
+        <div class="row mt-3">
+            <div class="col">
+                <form [formGroup]="fileUpload" (ngSubmit)="onSubmit()">
+                    <input type="file" formControlName="file" (change)="onFileChange($event)">
+                    <button type="submit" class="btn btn-success" [disabled]="!fileUpload.valid">Upload</button>
+                </form>        
+            </div>
+        </div>
+        <hr>
+        
+        <div class="row my-2" *ngFor="let file of files">
+        
+            <div class="col-md-1 d-flex justify-content-center">     
+               <div *ngIf="file.type === '.csv'">            
+                <i class="fas fa-file-csv fa-3x"></i>
+               </div> 
+               <div *ngIf="file.type === '.pdf'">
+                <i class="far fa-file-pdf fa-3x"></i>
+               </div>
+               <div *ngIf="file.type === '.xlsx' || file.type === '.xls'">
+                <i class="far fa-file-excel fa-3x"></i>
+               </div>
+               <div *ngIf="file.type === '.docx' || file.type === '.doc'">
+                <i class="far fa-file-word fa-3x"></i>
+               </div>
+               <div *ngIf="file.type === '.jpg' || file.type === '.png'">
+                <i class="far fa-file-image fa-3x"></i>
+               </div>
+               <div *ngIf="file.type === '.txt' ">            
+                <i class="far fa-file-alt fa-3x"></i>
+               </div>
+            </div>
+            <div class="col-md-8 d-flex align-items-center">            
+                {{file.name}}
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                {{file.time | date}}
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+                <a>
+                    <i class="fas fa-trash-alt fa-2x mr-2 fg-success"  data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(file.name)"></i>
+                </a>            
+                <a [attr.href]="'http://localhost:8000/download/file/'+file.name">
+                    <i class="fas fa-file-download fa-2x mr-2" ></i>
+                </a>
+            </div>
+        </div>
     </div>
+    <!-- end of upload tab -->
+
+    <!-- carousel tab -->
+    <div class="tab-pane fade" id="carousel" role="tabpanel" aria-labelledby="carousel-tab">
+        <div class="row mt-3">
+            <div class="col">
+                <form [formGroup]="carouselUpload" (ngSubmit)="onCarouselSubmit()">
+                    <input type="file" formControlName="file" (change)="onCarouselChange($event)">
+                    
+                    <button type="submit" class="btn btn-success" [disabled]="!carouselUpload.valid">Upload</button>
+                    <div class="text-muted">png or jpg 800x300</div>
+                </form>        
+            </div>
+        </div>
+        <hr>
+
+        <div class="row my-2" *ngFor="let carousel of carousels">
+        
+            <div class="col-md-4 ">    
+                <img [attr.src]="'http://localhost:8000/assets/carousel/'+carousel.name" width="300" height="300" class="img-thumbnail" [attr.alt]="carousel.name">
+            </div>
+            <div class="col-md-3 d-flex align-items-center">            
+                {{carousel.name}}
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                {{carousel.time | date}}
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+                <a>
+                    <i class="fas fa-trash-alt fa-2x mr-2 fg-success"  data-toggle="modal" data-target="#deleteCarouselConfirm" (click)="onDeleteCarouselConfirm(carousel.name)"></i>
+                </a>            
+                <a [attr.href]="'http://localhost:8000/download/carousel/'+carousel.name" >
+                    <i class="fas fa-file-download fa-2x mr-2" ></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- end of carousel tab -->
 </div>
-<hr>
-
-
-    <div class="row my-2" *ngFor="let file of files">
-        <div class="col-md-1 d-flex justify-content-center">        
-               
-           <div *ngIf="file.type === '.csv'">            
-            <i class="fas fa-file-csv fa-3x"></i>
-           </div> 
-           <div *ngIf="file.type === '.pdf'">
-            <i class="far fa-file-pdf fa-3x"></i>
-           </div>
-           <div *ngIf="file.type === '.xlsx' || file.type === '.xls'">
-            <i class="far fa-file-excel fa-3x"></i>
-           </div>
-           <div *ngIf="file.type === '.docx' || file.type === '.doc'">
-            <i class="far fa-file-word fa-3x"></i>
-           </div>
-           <div *ngIf="file.type === '.jpg' || file.type === '.png'">
-            <i class="far fa-file-image fa-3x"></i>
-           </div>
-           <div *ngIf="file.type === '.txt' ">            
-            <i class="far fa-file-alt fa-3x"></i>
-           </div>
-        </div>
-        <div class="col-md-8 d-flex align-items-center">            
-            {{file.name}}
-        </div>
-        <div class="col-md-2 d-flex align-items-center">
-            {{file.time | date}}
-        </div>
-        <div class="col-md-1 d-flex align-items-center">
-            <a>
-                <i class="fas fa-trash-alt fa-2x mr-2 fg-success"  data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(file.name)"></i>
-            </a>            
-            <a [attr.href]="'http://localhost:8000/download/file/'+file.name">
-                <i class="fas fa-file-download fa-2x mr-2" ></i>
-            </a>
-        </div>
-    </div>
-
+<!-- end of tab content -->
 
 
 <!-- modal delete confirm -->
@@ -71,3 +124,26 @@
         </div>
     </div>
 </div>
+<!-- end of modal delete confirm -->
+
+
+<!-- modal delete Carousel confirm -->
+<div class="modal" id="deleteCarouselConfirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Delete Confirmation.
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Delete  : {{carousel}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteCarousel(carousel)" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of modal delete Carousel confirm -->

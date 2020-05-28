@@ -16,18 +16,35 @@ export class UploadComponent implements OnInit {
   files:any
   file:any
 
+  carouselUpload = this.fb.group({
+    file:['',Validators.required],
+    fileSource:['']  })
+
+  carousels:any
+  carousel:any
+
 
   constructor(private fb:FormBuilder, private fileService:FileService) { }
 
   ngOnInit() {
     this.getUploadFile()
+    this.getCarouselFile()
   }
 
   getUploadFile(){
     this.fileService.getUploadFile().subscribe(rs => {
       if(rs['code'] == 1){
         this.files = rs['data']  
-        console.log(rs)      
+        // console.log(rs)      
+      }
+    })
+  }
+
+  getCarouselFile(){
+    this.fileService.getCarouselFile().subscribe(rs => {
+      if(rs['code'] == 1){
+        this.carousels = rs['data']
+        console.log(rs['data'])
       }
     })
   }
@@ -37,6 +54,16 @@ export class UploadComponent implements OnInit {
       let file = event.target.files[0]
       console.log(file)
       this.fileUpload.patchValue({
+        fileSource:file
+      })
+    }
+  }
+
+  onCarouselChange(event){
+    if(event.target.files.length > 0){
+      let file = event.target.files[0]
+      console.log(file)
+      this.carouselUpload.patchValue({
         fileSource:file
       })
     }
@@ -54,6 +81,17 @@ export class UploadComponent implements OnInit {
     
   }
 
+  onCarouselSubmit(){
+    let formData = new FormData()
+    formData.append('file', this.carouselUpload.get('fileSource').value)
+
+    this.fileService.postUploadCarousel(formData).subscribe(rs => {
+      this.carouselUpload.reset()
+      this.ngOnInit()
+    })
+
+  }
+
   onDeleteFile(file){
     console.log(file)
     this.fileService.deleteUploadFile(file).subscribe(rs => {
@@ -69,6 +107,19 @@ export class UploadComponent implements OnInit {
 
   onDownloadFile(file){
     this.fileService.getDownload(file)
+  }
+
+  onDeleteCarouselConfirm(carousel){
+    this.carousel = carousel
+  }
+
+  onDeleteCarousel(carousel){
+    console.log(carousel)
+    this.fileService.deleteCarouselFile(carousel).subscribe(rs => {
+      if(rs['code'] == 1){
+        this.ngOnInit()
+      }
+    })
   }
 
 }

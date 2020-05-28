@@ -1,0 +1,99 @@
+<h2>Carousel</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <div class="my-2" data-toggle="tooltip" title="Create Download">
+            <button type="button" class="btn btn-info" (click)="onCreate()">
+                <i class="fas fa-plus"></i>
+                Create
+            </button>
+               
+        </div>
+    </div>
+    
+</div>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+                <th>id</th>
+                <th class="text-center">image</th>
+                <th>title</th>
+                <th>news title</th>
+                <th class="text-center">pin</th>
+                <th class="text-center">state</th>
+                <th class="text-center">action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carousel of carousels | paginate:{itemsPerPage: 5, currentPage: page}">
+                    <td class="align-middle">                        
+                            {{carousel.id}}                        
+                    </td>
+                    <td class="text-center">
+                        <img [attr.src]="'http://localhost:8000/assets/carousel/'+carousel.carousel_image_file" width="200" height="200" class="img-thumbnail" [attr.alt]="carousel.carousel_image_file" > 
+                        
+                    </td>
+                    <td class="align-middle">{{carousel.carousel_name}}</td>
+                    <td class="align-middle">{{carousel.news_title}}</td>
+                    <td class="text-center align-middle">
+                        <a data-toggle="tooltip" title="Unpin">
+                            <i *ngIf="carousel.pin ;  else unPin" class="fas fa-thumbtack text-dark" (click)="onPinDeactivate(carousel.id)" ></i>
+                        </a>                
+                        <ng-template #unPin>
+                            <a data-toggle="tooltip" title="Pin">
+                                <span (click)="onPinActivate(carousel.id)">-</span>
+                            </a>                    
+                        </ng-template>
+                    </td>
+                    <td class="text-center align-middle">
+                        <a data-toggle="tooltip" title="Deactivate" >
+                            <i *ngIf="carousel.state ; else unCheck" class="fas fa-check text-success" (click)="onDeactivate(carousel.id)"></i>
+                        </a>
+                        
+                        <ng-template #unCheck>
+                            <a data-toggle="tooltip" title="Activate" >
+                                <i class="far fa-times-circle text-danger" (click)="onActivate(carousel.id)"></i>
+                            </a>                   
+                        </ng-template>
+                    </td>
+                    <td class="text-center align-middle">
+                        <a>
+                            <i class="fas fa-pen mx-2" ><small> Edit</small></i>
+                        </a>
+                        |
+                        <a>
+                            <i class="fas fa-trash text-danger mx-2" data-toggle="modal" data-target="#deleteConfirm"><small> Delete</small></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <pagination-controls (pageChange)="page = $event" autoHide="true" ></pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal delete confirm -->
+<div class="modal" id="deleteConfirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Delete Confirmation.
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Delete Carousel ID :</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-danger"  data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
