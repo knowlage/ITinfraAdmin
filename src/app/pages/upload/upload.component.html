@@ -1,0 +1,73 @@
+<h2>Upload File</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form [formGroup]="fileUpload" (ngSubmit)="onSubmit()">
+            <input type="file" formControlName="file" (change)="onFileChange($event)">
+            <button type="submit" class="btn btn-success" [disabled]="!fileUpload.valid">Upload</button>
+        </form>        
+    </div>
+</div>
+<hr>
+
+
+    <div class="row my-2" *ngFor="let file of files">
+        <div class="col-md-1 d-flex justify-content-center">        
+               
+           <div *ngIf="file.type === '.csv'">            
+            <i class="fas fa-file-csv fa-3x"></i>
+           </div> 
+           <div *ngIf="file.type === '.pdf'">
+            <i class="far fa-file-pdf fa-3x"></i>
+           </div>
+           <div *ngIf="file.type === '.xlsx' || file.type === '.xls'">
+            <i class="far fa-file-excel fa-3x"></i>
+           </div>
+           <div *ngIf="file.type === '.docx' || file.type === '.doc'">
+            <i class="far fa-file-word fa-3x"></i>
+           </div>
+           <div *ngIf="file.type === '.jpg' || file.type === '.png'">
+            <i class="far fa-file-image fa-3x"></i>
+           </div>
+           <div *ngIf="file.type === '.txt' ">            
+            <i class="far fa-file-alt fa-3x"></i>
+           </div>
+        </div>
+        <div class="col-md-8 d-flex align-items-center">            
+            {{file.name}}
+        </div>
+        <div class="col-md-2 d-flex align-items-center">
+            {{file.time | date}}
+        </div>
+        <div class="col-md-1 d-flex align-items-center">
+            <a>
+                <i class="fas fa-trash-alt fa-2x mr-2 fg-success"  data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(file.name)"></i>
+            </a>            
+            <a [attr.href]="'http://localhost:8000/download/file/'+file.name">
+                <i class="fas fa-file-download fa-2x mr-2" ></i>
+            </a>
+        </div>
+    </div>
+
+
+
+<!-- modal delete confirm -->
+<div class="modal" id="deleteConfirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Delete Confirmation.
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Delete  : {{file}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteFile(file)" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

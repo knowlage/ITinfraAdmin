@@ -75,7 +75,7 @@ export class FaqsEditeComponent implements OnInit {
   }
 
   onSelectFile(){
-    let downloadLink = "http://localhost:8000/download/"+this.link.value
+    let downloadLink = "http://localhost:8000/download/file/"+this.link.value
     let insert = "<a href='"+downloadLink+"'>"+this.title.value+"</a>"
     let answer = this.faqsFormAnswer.value + insert    
     this.faqsFormAnswer.setValue(answer)

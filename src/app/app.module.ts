@@ -20,6 +20,9 @@ import { DownloadComponent } from './pages/download/download.component';
 import { FaqsComponent } from './pages/faqs/faqs.component';
 import { FaqsEditeComponent } from './pages/faqs-edite/faqs-edite.component';
 import { FaqsSearchPipe } from './pages/faqs/faqsSearchPipe';
+import { UploadComponent } from './pages/upload/upload.component';
+import { DownloadEditeComponent } from './pages/download-edite/download-edite.component';
+import { downloadSearchPipe} from './pages/download/downloadSearchPip';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { FaqsSearchPipe } from './pages/faqs/faqsSearchPipe';
     DownloadComponent,
     FaqsComponent,
     FaqsEditeComponent,
-    FaqsSearchPipe
+    FaqsSearchPipe,
+    UploadComponent,
+    DownloadEditeComponent,
+    downloadSearchPipe
   ],
   imports: [
     BrowserModule,

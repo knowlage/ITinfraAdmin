@@ -1,0 +1,32 @@
+<h2>File Download</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header">
+                <h3>File Download {{action}}</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="fileDownloadForm" (ngSubmit)="onSubmit()">                    
+                    <div>
+                        <label>Download Title</label>
+                        <input type="text" formControlName="uploadTitle" class="form-control" placeholder="Download Title">
+                    </div>
+                   <div>
+                    <label>File Name</label>
+                    <select formControlName="uploadFilename" class="form-control"  >
+                        <option value="" >Select File</option>
+                        <option *ngFor="let fileName of uploadFile" [selected]="fileName.name === selected" >
+                            {{fileName.name}}
+                        </option>
+                    </select>
+                   </div>
+                    <div class="d-flex justify-content-end">                        
+                        <button type="submit" class="btn btn-success mt-3" [disabled]="!fileDownloadForm.valid" >{{action}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,8 @@ import { NewsEditeComponent} from './pages/news-edite/news-edite.component';
 import { DownloadComponent } from './pages/download/download.component';
 import { FaqsComponent } from './pages/faqs/faqs.component';
 import { FaqsEditeComponent } from './pages/faqs-edite/faqs-edite.component';
+import { UploadComponent } from './pages/upload/upload.component';
+import { DownloadEditeComponent } from './pages/download-edite/download-edite.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,9 @@ const routes: Routes = [
       {path:'news/edit', component: NewsEditeComponent},
       {path:'download', component: DownloadComponent},
       {path:'faqs', component: FaqsComponent},
-      {path:'faqs/edit', component: FaqsEditeComponent}
+      {path:'faqs/edit', component: FaqsEditeComponent},
+      {path:'upload', component: UploadComponent},
+      {path:'download/edit', component: DownloadEditeComponent}
     ]
   },
   {

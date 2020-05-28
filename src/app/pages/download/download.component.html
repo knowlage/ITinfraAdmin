@@ -1,2 +1,105 @@
 <h2>File Download</h2>
 <hr>
+
+<div class="row">
+    <div class="col">
+        <div class="my-2" data-toggle="tooltip" title="Create Download">
+            <button type="button" class="btn btn-info" (click)="onCreate()">
+                <i class="fas fa-plus"></i>
+                Create
+            </button>
+               
+        </div>
+    </div>
+    
+</div>
+
+<hr>
+
+<div class="row my-3">    
+    <div class="col">        
+            <div class="input-group">                
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>                    
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="title" placeholder="Download Title Search..">
+            </div>        
+    </div>    
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+                <th>id</th>
+                <th>title</th>
+                <th>filename</th>
+                <th class="text-center">pin</th>
+                <th class="text-center">state</th>
+                <th class="text-center">action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of files | downloadSearch:title | paginate:{itemsPerPage: 10, currentPage: page}">
+                    <td>{{file.id}}</td>
+                    <td>{{file.upload_title}}</td>
+                    <td>{{file.upload_filename}}</td>
+                    <td class="text-center">
+                        <a data-toggle="tooltip" title="Unpin">
+                            <i *ngIf="file.upload_pin ;  else unPin" class="fas fa-thumbtack text-dark" (click)="onPinDeactivate(file.id)"></i>
+                        </a>                
+                        <ng-template #unPin>
+                            <a data-toggle="tooltip" title="Pin">
+                                <span (click)="onPinActivate(file.id)">-</span>
+                            </a>                    
+                        </ng-template>
+                    </td>
+                    <td class="text-center">
+                        <a data-toggle="tooltip" title="Deactivate" >
+                            <i *ngIf="file.upload_state ; else unCheck" class="fas fa-check text-success" (click)="onDeactivate(file.id)"></i>
+                        </a>
+                        
+                        <ng-template #unCheck>
+                            <a data-toggle="tooltip" title="Activate" >
+                                <i class="far fa-times-circle text-danger" (click)="onActivate(file.id)"></i>
+                            </a>                   
+                        </ng-template>
+                    </td>
+                    <td class="text-center">
+                        <a>
+                            <i class="fas fa-pen mx-2" (click)="onEdite(file)"><small> Edit</small></i>
+                        </a>
+                        |
+                        <a>
+                            <i class="fas fa-trash text-danger mx-2" data-toggle="modal" data-target="#deleteConfirm" (click)="onDeleteConfirm(file.id)"><small> Delete</small></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <pagination-controls (pageChange)="page = $event" autoHide="true" ></pagination-controls>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal delete confirm -->
+<div class="modal" id="deleteConfirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    Delete Confirmation.
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Delete Download ID :{{id}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Cancle</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete(id)" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+

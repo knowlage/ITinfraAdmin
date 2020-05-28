@@ -78,7 +78,7 @@ export class NewsEditeComponent implements OnInit {
   }
 
   onSelectFile(){
-    let downloadLink = "http://localhost:8000/download/"+this.link.value
+    let downloadLink = "http://localhost:8000/download/file/"+this.link.value
     let insert = "<a href='"+downloadLink+"'>"+this.title.value+"</a>"
     let text = this.newsFormText.value + insert    
     this.newsFormText.setValue(text)
