@@ -25,6 +25,7 @@ import { DownloadEditeComponent } from './pages/download-edite/download-edite.co
 import { downloadSearchPipe} from './pages/download/downloadSearchPip';
 import { CarouselComponent } from './pages/carousel/carousel.component';
 import { CarouselEditeComponent } from './pages/carousel-edite/carousel-edite.component';
+import { carouselSearchPipe } from './pages/carousel/carouselSearchPip';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CarouselEditeComponent } from './pages/carousel-edite/carousel-edite.co
     DownloadEditeComponent,
     downloadSearchPipe,
     CarouselComponent,
-    CarouselEditeComponent
+    CarouselEditeComponent,
+    carouselSearchPipe
   ],
   imports: [
     BrowserModule,

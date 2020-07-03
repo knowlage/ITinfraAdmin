@@ -13,7 +13,7 @@
                     <input type="text" formControlName="carousel_name" class="form-control" placeholder="Carousel Name">
                     <label>News Link</label>
                     <select formControlName="news_id" class="form-control">
-                        <option value='' disabled>Select News</option>
+                        <option value='0'>Select News</option>
                         <option *ngFor="let news of news_list" [value]="news.id">{{news.news_title}}</option>
                     </select>
                     <label>Carousel Image</label>

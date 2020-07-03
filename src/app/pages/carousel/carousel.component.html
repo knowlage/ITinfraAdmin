@@ -15,6 +15,17 @@
 </div>
 <hr>
 
+<div class="row my-3">    
+    <div class="col">        
+            <div class="input-group">                
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>                    
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="title" placeholder="Carousel Name Search..">
+            </div>        
+    </div>    
+</div>
+
 <div class="row">
     <div class="col">
         <table class="table table-striped">
@@ -28,7 +39,7 @@
                 <th class="text-center">action</th>
             </thead>
             <tbody>
-                <tr *ngFor="let carousel of carousels | paginate:{itemsPerPage: 5, currentPage: page}">
+                <tr *ngFor="let carousel of carousels | carouselSearch:title | paginate:{itemsPerPage: 5, currentPage: page}">
                     <td class="align-middle">                        
                             {{carousel.id}}                        
                     </td>
@@ -61,11 +72,11 @@
                     </td>
                     <td class="text-center align-middle">
                         <a>
-                            <i class="fas fa-pen mx-2" ><small> Edit</small></i>
+                            <i class="fas fa-pen mx-2" (click)="onEdite(carousel)" ><small> Edit</small></i>
                         </a>
                         |
                         <a>
-                            <i class="fas fa-trash text-danger mx-2" data-toggle="modal" data-target="#deleteConfirm"><small> Delete</small></i>
+                            <i class="fas fa-trash text-danger mx-2" data-toggle="modal" data-target="#deleteConfirm" (click)="onConfirmDelete(carousel.id)"><small> Delete</small></i>
                         </a>
                     </td>
                 </tr>
@@ -88,11 +99,11 @@
                 </div>
             </div>
             <div class="modal-body">
-                <p>Delete Carousel ID :</p>
+                <p>Delete Carousel ID : {{id}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" data-dismiss="modal">Cancle</button>
-                <button type="button" class="btn btn-danger"  data-dismiss="modal">Delete</button>
+                <button type="button" class="btn btn-danger"  data-dismiss="modal" (click)="onDelete(id)">Delete</button>
             </div>
         </div>
     </div>

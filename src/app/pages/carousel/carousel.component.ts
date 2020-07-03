@@ -11,6 +11,7 @@ export class CarouselComponent implements OnInit {
 
   carousels:any
   page:number = 1
+  id
 
   constructor(private carouselService:CarouselService, private router:Router) { }
 
@@ -60,6 +61,24 @@ export class CarouselComponent implements OnInit {
   }
 
   onCreate(){
+    localStorage.removeItem('carouselEdit')
+    this.router.navigate(['/dashboard/carousel/edit'])
+  }
+
+  onConfirmDelete(id){
+    this.id = id
+  }
+
+  onDelete(id){
+    this.carouselService.deleteCarousel(id).subscribe(rs => {
+      if(rs['code'] == 1){
+        this.ngOnInit()
+      }
+    })
+  }
+
+  onEdite(carousel){
+    localStorage.setItem('carouselEdit',JSON.stringify(carousel))
     this.router.navigate(['/dashboard/carousel/edit'])
   }
 
