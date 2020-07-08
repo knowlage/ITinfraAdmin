@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<p>dashboard works!!!</p>
+
+<ul>
+    <li *ngFor="let data of computerSummary">{{data.type}} : {{data.total | number}}</li>
+</ul>
+
+{{computerActiveTotal | number}}

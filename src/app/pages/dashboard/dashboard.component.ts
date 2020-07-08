@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DashboardService} from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  computerActiveTotal:any = 0
+  computerSummary:any
 
-  constructor() { }
+  constructor(private dashboardService:DashboardService) { }
 
   ngOnInit() {
+    this.getComputersSummary()
+  }
+
+  getComputersSummary(){
+    this.dashboardService.getComputersSummary().subscribe(rs => {
+      if(rs['code'] == 1){
+        this.computerSummary = rs['data']
+      }
+      rs['data'].forEach(element => {
+        this.computerActiveTotal += element.total
+      });
+    })
   }
 
 }
