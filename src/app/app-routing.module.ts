@@ -16,6 +16,8 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { DownloadEditeComponent } from './pages/download-edite/download-edite.component';
 import { CarouselComponent } from './pages/carousel/carousel.component';
 import { CarouselEditeComponent} from './pages/carousel-edite/carousel-edite.component';
+import { ComputersComponent } from './pages/computers/computers/computers.component';
+import { SoftwaresComponent } from './pages/softwares/softwares/softwares.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/dashboard', pathMatch:'full'},
@@ -33,7 +35,9 @@ const routes: Routes = [
       {path:'upload', component: UploadComponent},
       {path:'download/edit', component: DownloadEditeComponent},
       {path:'carousel', component: CarouselComponent},
-      {path:'carousel/edit', component: CarouselEditeComponent}
+      {path:'carousel/edit', component: CarouselEditeComponent},
+      {path:'computers', component: ComputersComponent},
+      {path:'softwares', component: SoftwaresComponent}
     ]
   },
   {

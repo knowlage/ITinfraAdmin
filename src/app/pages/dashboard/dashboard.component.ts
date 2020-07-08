@@ -7,24 +7,13 @@ import {DashboardService} from '../../services/dashboard.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  computerActiveTotal:any = 0
-  computerSummary:any
 
-  constructor(private dashboardService:DashboardService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getComputersSummary()
+    
+    
   }
 
-  getComputersSummary(){
-    this.dashboardService.getComputersSummary().subscribe(rs => {
-      if(rs['code'] == 1){
-        this.computerSummary = rs['data']
-      }
-      rs['data'].forEach(element => {
-        this.computerActiveTotal += element.total
-      });
-    })
-  }
-
+  
 }

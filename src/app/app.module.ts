@@ -26,6 +26,13 @@ import { downloadSearchPipe} from './pages/download/downloadSearchPip';
 import { CarouselComponent } from './pages/carousel/carousel.component';
 import { CarouselEditeComponent } from './pages/carousel-edite/carousel-edite.component';
 import { carouselSearchPipe } from './pages/carousel/carouselSearchPip';
+import { ChartsModule } from 'ng2-charts';
+import { ComputersComponent } from './pages/computers/computers/computers.component';
+import { ComputersInfoComponent } from './pages/computers/computers-info/computers-info.component';
+import { SoftwaresComponent } from './pages/softwares/softwares/softwares.component';
+import { SoftwareInfoComponent } from './pages/softwares/software-info/software-info.component';
+
+
 
 @NgModule({
   declarations: [
@@ -48,7 +55,13 @@ import { carouselSearchPipe } from './pages/carousel/carouselSearchPip';
     downloadSearchPipe,
     CarouselComponent,
     CarouselEditeComponent,
-    carouselSearchPipe
+    carouselSearchPipe,
+    ComputersComponent,
+    ComputersInfoComponent,
+    SoftwaresComponent,
+    SoftwareInfoComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -57,7 +70,8 @@ import { carouselSearchPipe } from './pages/carousel/carouselSearchPip';
     NgxPaginationModule,
     ReactiveFormsModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
