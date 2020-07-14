@@ -1,1 +1,59 @@
-<app-software-info></app-software-info>
+
+<div class="row mt-2">
+    <div class="col">
+        <app-software-search-by-employeenumber></app-software-search-by-employeenumber>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="softwareInfo-tab" href="#softwareInfo" data-toggle="tab" role="tab">
+                    Info
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="softwareReport-tab" href="#softwareReport" data-toggle="tab" role="tab">
+                    Report
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="softwareOperate-tab" href="#softwareOperate" data-toggle="tab" role="tab">
+                    Operate
+                </a>
+            </li>
+        </ul>
+        
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="softwareInfo" role="tabpanel">
+                <app-software-info></app-software-info>
+            </div>
+            <div class="tab-pane fade" id="softwareReport" role="tabpanel">
+                <p>Report</p>
+            </div>
+            <div class="tab-pane fade" id="softwareOperate" role="tabpanel">
+                <p>Operate</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+      <div class="nav flex-column nav-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="tab" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+        <a class="nav-link" id="v-pills-profile-tab" data-toggle="tab" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+        <a class="nav-link" id="v-pills-messages-tab" data-toggle="tab" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="tab" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+      </div>
+    </div>
+  </div>

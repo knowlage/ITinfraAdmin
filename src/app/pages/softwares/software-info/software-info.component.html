@@ -8,18 +8,18 @@
 <div class="row p-2">
     <div class="col">
         <table class="table table-striped table-dark">
-            <thead>
-                <th>No</th>
+            <thead>                
                 <th>Software Name</th>
+                <th>Desc</th>
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Balance</th>
             </thead>
             <tbody>
-                <tr *ngFor="let data of softwareBalance; index as i">
-                    <td>{{i}}</td>
+                <tr *ngFor="let data of softwareBalance; index as i">                    
                     <td>{{data.software_name}} {{data.software_version}}</td>
-                    <td class="text-center">{{data.software_quantity | number}}</td>
-                    <td class="text-center" [ngClass]="data.balance_total > 0 ? 'text-success':'text-danger'"><b>{{data.balance_total | number}}</b></td>
+                    <td>{{data.software_detail_description}}</td>
+                    <td class="text-center">{{data.software_detail_quantity | number}}</td>
+                    <td class="text-center" [ngClass]="data.balance > 0 ? 'text-success':'text-danger'"><b class="h5">{{data.balance | number}}</b></td>
                 </tr>
             </tbody>
         </table>

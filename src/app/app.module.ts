@@ -31,6 +31,7 @@ import { ComputersComponent } from './pages/computers/computers/computers.compon
 import { ComputersInfoComponent } from './pages/computers/computers-info/computers-info.component';
 import { SoftwaresComponent } from './pages/softwares/softwares/softwares.component';
 import { SoftwareInfoComponent } from './pages/softwares/software-info/software-info.component';
+import { SoftwareSearchByEmployeenumberComponent } from './pages/softwares/software-search-by-employeenumber/software-search-by-employeenumber.component';
 
 
 
@@ -60,6 +61,7 @@ import { SoftwareInfoComponent } from './pages/softwares/software-info/software-
     ComputersInfoComponent,
     SoftwaresComponent,
     SoftwareInfoComponent,
+    SoftwareSearchByEmployeenumberComponent,
     
     
   ],

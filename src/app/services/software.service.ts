@@ -9,11 +9,11 @@ export class SoftwareService {
   constructor(private http:HttpClient) { }
 
   
-  getSoftwaresSummary(){
-    return this.http.get('http://localhost:8000/software/getSoftwares')
-  }
-
   getSoftwareBalance(){
     return this.http.get('http://localhost:8000/software/getSoftwareBalance')
+  }
+
+  getSoftwareByEmployeenumber(employeenumber){
+    return this.http.get('http://localhost:8000/software/getSoftwareByEmployeenumber/'+employeenumber)
   }
 }

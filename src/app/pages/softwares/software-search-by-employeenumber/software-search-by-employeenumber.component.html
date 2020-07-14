@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col">
+        <p class="text-muted">Software Search By EmployeeNumber</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">        
+        <form [formGroup]="softwareSearchForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" formControlName='employeenumber' class="form-control" placeholder="Employee Number">
+            </div>
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#softwareSearch">Search</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="softwareSearch" role="dialog" aria-labelledby="softwareSearchLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Software Usage</h5>
+            </div>
+            <div class="modal-body">
+                <div *ngIf="softwareSearch; else notFound">
+                    <table class="table table-striped">
+                        <thead>
+                            <th>User</th>
+                            <th>Software</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of softwareSearch">
+                                <td>{{data.givenname}} {{data.sn}}</td>
+                                <td>{{data.software_name}} {{data.software_version}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ng-template #notFound>
+                    <p>Not Found..</p>
+                </ng-template>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
