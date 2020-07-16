@@ -86,4 +86,6 @@ export class DownloadComponent implements OnInit {
     this.router.navigate(['/dashboard/download/edit'])
   }
 
+ 
+
 }

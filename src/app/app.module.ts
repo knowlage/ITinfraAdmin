@@ -32,6 +32,12 @@ import { ComputersInfoComponent } from './pages/computers/computers-info/compute
 import { SoftwaresComponent } from './pages/softwares/softwares/softwares.component';
 import { SoftwareInfoComponent } from './pages/softwares/software-info/software-info.component';
 import { SoftwareSearchByEmployeenumberComponent } from './pages/softwares/software-search-by-employeenumber/software-search-by-employeenumber.component';
+import { SoftwareOperateComponent } from './pages/softwares/software-operate/software-operate.component';
+import { SoftwareUsageComponent } from './pages/softwares/software-usage/software-usage.component';
+import { SoftwareContractComponent } from './pages/softwares/software-contract/software-contract.component';
+import { SoftwareDetailComponent } from './pages/softwares/software-detail/software-detail.component';
+import { SoftwareSoftwaresComponent } from './pages/softwares/software-softwares/software-softwares.component';
+import { SoftwareInsertComponent } from './pages/softwares/software-insert/software-insert.component';
 
 
 
@@ -62,6 +68,12 @@ import { SoftwareSearchByEmployeenumberComponent } from './pages/softwares/softw
     SoftwaresComponent,
     SoftwareInfoComponent,
     SoftwareSearchByEmployeenumberComponent,
+    SoftwareOperateComponent,
+    SoftwareUsageComponent,
+    SoftwareContractComponent,
+    SoftwareDetailComponent,
+    SoftwareSoftwaresComponent,
+    SoftwareInsertComponent,
     
     
   ],

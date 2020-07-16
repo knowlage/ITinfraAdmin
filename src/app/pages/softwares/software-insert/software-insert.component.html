@@ -1,0 +1,15 @@
+{{insert_software_name}}
+<div class="row">
+    <div class="col">
+        <form [formGroup]='insertForm' (ngSubmit)="onSubmit()">
+            <input type="hidden" formControlName="id">            
+            <div class="form-group">
+                <input type="text" formControlName='software_name' class="form-control" placeholder="Software Name" >
+            </div>
+            <div class="form-group">
+                <input type="text" formControlName='software_version' class="form-control" placeholder="Software Version" >
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
